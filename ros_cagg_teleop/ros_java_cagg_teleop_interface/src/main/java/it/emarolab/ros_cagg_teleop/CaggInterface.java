@@ -1,4 +1,4 @@
-package it.emarolab.ros_cagg_node;
+package it.emarolab.ros_cagg_teleop;
 
 import it.emarolab.cagg.core.evaluation.ThreadedEvaluator;
 import it.emarolab.cagg.core.evaluation.inputFormatting.ThreadedInputFormatter;

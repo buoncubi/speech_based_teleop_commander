@@ -2,11 +2,14 @@
 #include "speech_interaction/Text2speech.h"
 #include "speech_interaction/Speech2text.h"
 #include "ros_cagg_msgs/cagg_tags.h"
+#include "std_msgs/String.h"
 
 #include <fstream>
 
 using namespace speech_interaction;
 using namespace std;
+using namespace std_msgs;
+using namespace ros_cagg_msgs;
 
 ros::Publisher toSpeechPub;
 
@@ -94,7 +97,7 @@ void getSpokenText(const Speech2textPtr& toText){ // callback
 	//sendTextToSpeech( toText->transcript.c_str());
 	
 	// send sentence to CAGG for evaluation (it will trigger a callback)
-	caggPublisher.publish( toText->transcript);
+	caggPublisher.publish( toText);
 }
 
 void getCAGGTags(const cagg_tags& toText){ // callback
@@ -129,12 +132,12 @@ int main(int argc, char **argv){
 	// initialise the subscriber to get text from speech (see callback)
 	ros::Subscriber toTextSub = node.subscribe( "/speech_to_text", 10, getSpokenText);
 	
-	ros::Subscriber toTextSub = node.subscribe( "/CAGG/semantic_tags", 10, getCAGGTags);
+	ros::Subscriber fromCAGGsub = node.subscribe( "/CAGG/semantic_tags", 10, getCAGGTags);
 
 	// initialise the publisher to produce speech from text
 	toSpeechPub = node.advertise< Text2speech>( "/text_to_speech", 10);
 	
-	caggPublisher = node.advertise< std_msgs.string>( "/CAGG/input_text", 10);
+	caggPublisher = node.advertise< std_msgs::String>( "/CAGG/input_text", 10);
 
 	// spin continuously
 	while (ros::ok()){

@@ -121,7 +121,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=ros_verbal_interaction_node
+CMAKE_PROJECT_NAME:STATIC=speech_interaction
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -178,11 +178,20 @@ ProcessorCount_cmd_getconf:FILEPATH=/usr/bin/getconf
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/sbin/sysctl
 
+//The directory containing a CMake configuration file for catkin.
+catkin_DIR:PATH=catkin_DIR-NOTFOUND
+
 //Value Computed by CMake
 ros_verbal_interaction_node_BINARY_DIR:STATIC=/home/luca-bnc/ros_ws/src/sppech_based_teleop_commander/ros_verbal_interaction_node/cmake-build-debug
 
 //Value Computed by CMake
 ros_verbal_interaction_node_SOURCE_DIR:STATIC=/home/luca-bnc/ros_ws/src/sppech_based_teleop_commander/ros_verbal_interaction_node
+
+//Value Computed by CMake
+speech_interaction_BINARY_DIR:STATIC=/home/luca-bnc/ros_ws/src/sppech_based_teleop_commander/ros_verbal_interaction_node/cmake-build-debug
+
+//Value Computed by CMake
+speech_interaction_SOURCE_DIR:STATIC=/home/luca-bnc/ros_ws/src/sppech_based_teleop_commander/ros_verbal_interaction_node
 
 
 ########################
@@ -324,6 +333,10 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Test COMPILER_SUPPORTS_CXX0X
+COMPILER_SUPPORTS_CXX0X:INTERNAL=1
+//Test COMPILER_SUPPORTS_CXX11
+COMPILER_SUPPORTS_CXX11:INTERNAL=1
 //ADVANCED property for variable: ProcessorCount_cmd_getconf
 ProcessorCount_cmd_getconf-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ProcessorCount_cmd_sysctl
