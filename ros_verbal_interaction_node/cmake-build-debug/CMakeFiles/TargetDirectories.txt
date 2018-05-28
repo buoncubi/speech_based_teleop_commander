@@ -1,3 +1,0 @@
-/home/luca-bnc/ros_ws/src/sppech_based_teleop_commander/ros_verbal_interaction_node/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/luca-bnc/ros_ws/src/sppech_based_teleop_commander/ros_verbal_interaction_node/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/luca-bnc/ros_ws/src/sppech_based_teleop_commander/ros_verbal_interaction_node/cmake-build-debug/CMakeFiles/ros_verbal_interaction_node.dir
