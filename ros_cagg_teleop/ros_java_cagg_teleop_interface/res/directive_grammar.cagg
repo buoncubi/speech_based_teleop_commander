@@ -1,0 +1,12 @@
+#CAGv1;  
+
+!start <MAIN>;
+
+<MAIN>	: 	<GO> {@?;} | <STOP> {@?;} | <RESET> {@?;};
+// do not change the rule name (GO, STOP, and RESET) those are used in code!
+
+<GO>	:	go;
+<STOP>	:	stop | finish | done | ok;
+<RESET>	:	reset | forget | wrong | no;
+
+
