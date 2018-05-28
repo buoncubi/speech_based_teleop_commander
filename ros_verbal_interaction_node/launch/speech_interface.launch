@@ -14,6 +14,6 @@
 <node name="web_interface_visualiser" pkg="speech_interaction" type="web_interface_visualiser.sh" args="-u $(find speech_interaction)/java-script/speech_web_interface.html" output="screen"/>
 
 <!-- you can use speaker arguments: [_robot_language(str)] [_robot_volume(double)] [_robot_pitch(double)] [_robot_rate(double)]  (see http://responsivevoice.org/api/) and [_speech_dialog_print(str, path to the produced file. "":=don't print)] -->
-<node name="speech_back_example" pkg="speech_interaction" type="speech_example" args="_robot_language:='UK English Male' _speech_dialog_print:=$(find speech_interaction)'dialogs-log/'" output="screen" />
+<node name="speech_cagg_manager" pkg="speech_interaction" type="speech_cagg_manager" args="_robot_language:='UK English Male' _speech_dialog_print:=$(find speech_interaction)'dialogs-log/'" output="screen" />
 
 </launch>

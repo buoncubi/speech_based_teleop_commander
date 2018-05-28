@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/ros_verbal_interaction_node.dir/src/speech_cagg_manager.cpp.o  -o ros_verbal_interaction_node 

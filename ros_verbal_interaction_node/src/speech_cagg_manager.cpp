@@ -1,6 +1,7 @@
 #include "ros/ros.h"
 #include "speech_interaction/Text2speech.h"
 #include "speech_interaction/Speech2text.h"
+#include "ros_cagg_msgs/cagg_tags.h"
 
 #include <fstream>
 
@@ -8,6 +9,9 @@ using namespace speech_interaction;
 using namespace std;
 
 ros::Publisher toSpeechPub;
+
+ros::Publisher caggPublisher;
+
 
 // node parameters
 std::string printDialogPath;
@@ -79,7 +83,7 @@ void sendTextToSpeech( std::string userSpeechTranscription){
 }
 
 // Receive the message containing the transcript of what the user said
-void getSpokenText(const Speech2textPtr& toText){
+void getSpokenText(const Speech2textPtr& toText){ // callback
 	// log for showing purposes
 	ROS_INFO(" Speech to Text results.\n [language: %s] [transcript: %s] [confidence: %f]", toText->language.c_str(), toText->transcript.c_str(), toText->confidence);
 	// print dialog on file
@@ -87,7 +91,13 @@ void getSpokenText(const Speech2textPtr& toText){
 		printIncomingDialog( toText->language, toText->confidence, toText->transcript);
 
 	// make the machine saying something
-	sendTextToSpeech( toText->transcript.c_str());
+	//sendTextToSpeech( toText->transcript.c_str());
+	
+	// send sentence to CAGG for evaluation (it will trigger a callback)
+	caggPublisher.publish( toText->transcript);
+}
+
+void getCAGGTags(const cagg_tags& toText){ // callback
 }
 
 int main(int argc, char **argv){
@@ -117,10 +127,14 @@ int main(int argc, char **argv){
 	}
 
 	// initialise the subscriber to get text from speech (see callback)
-	ros::Subscriber toTextSub = node.subscribe("/speech_to_text", 1000, getSpokenText);
+	ros::Subscriber toTextSub = node.subscribe( "/speech_to_text", 10, getSpokenText);
+	
+	ros::Subscriber toTextSub = node.subscribe( "/CAGG/semantic_tags", 10, getCAGGTags);
 
 	// initialise the publisher to produce speech from text
-	toSpeechPub = node.advertise< Text2speech>("/text_to_speech", 1000);
+	toSpeechPub = node.advertise< Text2speech>( "/text_to_speech", 10);
+	
+	caggPublisher = node.advertise< std_msgs.string>( "/CAGG/input_text", 10);
 
 	// spin continuously
 	while (ros::ok()){
