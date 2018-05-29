@@ -47,7 +47,7 @@ Above is shown the UML diagram of the architecture, which is composed by nodes:
 
 ### Architecture
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/buoncubi/speech_based_teleop_commander/blob/developing/architecture.png "The speech_based_teleop_commander system architecture")
 
 The figure above shows the UML diagram of the architecture implemented in this repository.
 Developers that want to use this architecture should subscribe or publish messages only to the topics of the **speech_teleop_adapter** node.
