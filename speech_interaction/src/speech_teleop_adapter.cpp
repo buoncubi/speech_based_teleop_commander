@@ -36,19 +36,6 @@ const double DEFAULT_VOLUME = 1.0;
 const double DEFAULT_PITCH = 2.0;
 const double DEFAULT_RATE = 1.5;
 
-
-// Get current date/time, format is YYYY-MM-DD.HH:mm:ss
-const std::string currentDateTime() {
-    time_t     now = time(0);
-    struct tm  tstruct;
-    char       buf[80];
-    tstruct = *localtime(&now);
-    // Visit http://en.cppreference.com/w/cpp/chrono/c/strftime for more information about date/time format
-    strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
-
-    return buf;
-}
-
 // returns unix time stamp as a formatted string to append to dialog printing lines
 // Returns the current date and time formatted as %Y-%m-%d_%H.%M.%S
 const std::string getData(){
@@ -60,25 +47,25 @@ const std::string getData(){
 }
 // write to file a single string
 void writeStrToFile( const std::string &toWrite){
-	std::string formattedTime = "{" + getData() + "} ";
+        std::string formattedTime = getData();
 	ofstream file;
 	file.open( printDialogPath.c_str(), std::ofstream::out | std::ofstream::app);
-	file << formattedTime << toWrite << "\n";
+        file << formattedTime << ", " << toWrite << "\n";
 	file.close();
 }
 // writes on the specified file path the data coming from the human
 void printIncomingDialog( std::string language, double confidence, std::string transcript){
-	std::string formattedDialog = "Human Voice, " + currentDateTime() + ", " + language + ", " + std::to_string( confidence) + ", " + transcript;
+        std::string formattedDialog = "Human Voice, " + language + ", " + std::to_string( confidence) + ", " + transcript;
 	writeStrToFile( formattedDialog);
 }
 // writes on the specified file path the data coming from the robot
 void printOutcomingDialog( std::string language, double volume, double pitch, double rate, std::string text){
-	std::string formattedDialog = "Robot Voice, " + currentDateTime() + ", " + language + ", " + std::to_string( volume) + ", " + std::to_string( pitch) + ", " + std::to_string( rate) + ", " + text;
+        std::string formattedDialog = "Robot Voice, " + language + ", " + std::to_string( volume) + ", " + std::to_string( pitch) + ", " + std::to_string( rate) + ", " + text;
 	writeStrToFile( formattedDialog);
 }
 // write on the specified file path the CAGG evaluation oucomes
 void printCAGGEvaluation( std::string tagsStr, int computationTime, double confidence){
-    std::string formattedDialog = "CAGG Evaluation, " + currentDateTime() + ", " + std::to_string( computationTime) + ", " + std::to_string( confidence) + ", " + tagsStr;
+    std::string formattedDialog = "CAGG Evaluation, " + std::to_string( computationTime) + ", " + std::to_string( confidence) + ", " + tagsStr;
     writeStrToFile( formattedDialog);
 }
 // return true if the dialog should be printed on the given path (from ros parameter)
@@ -121,8 +108,8 @@ void getSpokenText(const Speech2textPtr& toText){ // callback
 		printIncomingDialog( toText->language, toText->confidence, toText->transcript);
 
 	// send sentence to CAGG for evaluation (it will trigger a callback)
-    std_msgs::String msg;
-    msg.data = toText->transcript;
+        std_msgs::String msg;
+        msg.data = toText->transcript;
 	caggInputPublisher.publish( msg);
 }
 
@@ -190,9 +177,10 @@ int main(int argc, char **argv){
 	// print dialog file hearder (tou must to have set the printDialogPath)
 	if( shouldPrintDialog()){
 		writeStrToFile( "Data header ...");
-		writeStrToFile( ":Human: [language, confidence, \"transcript\"]");
-		writeStrToFile( ":Robot: [language, volume, pitch, rate, \"text\"]\n");
-		writeStrToFile( "Dialogs ...\n");
+                writeStrToFile( "Human Voice, language, confidence, transcript");
+                writeStrToFile( "Robot Voice, language, volume, pitch, rate, text");
+                writeStrToFile( "CAGG Evaluation, computation time [ms], confidence, semantic tags\n");
+                writeStrToFile( "Dialogs ...\n");
 	}
 
 	// initialise the subscriber to get text from speech (see callback)
