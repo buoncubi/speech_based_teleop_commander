@@ -62,9 +62,9 @@ Then, such string evaluated in order to compute and provide the semantic of the 
 
 Each topic of the architecture has a dedicated message format as following:
 - the `/speech_to_text` topic uses the `speech_interaction/Speech2Text` message, which contains:
- - `std_msg::string language` (the speaking language used for the recognition)
- - `std_msg::string transcript` (the text generated from the user's voice)
- - `std_msg::float confidence` (the recognition confidence between 0 and 1)
+	- `std_msg::string language` (the speaking language used for the recognition)
+	- `std_msg::string transcript` (the text generated from the user's voice)
+	- `std_msg::float confidence` (the recognition confidence between 0 and 1)
 - the `/text_to_speech` topic uses the `speech_interaction/Text2Speech` message, which contains:
  - `std_msg::string text` (the string that the robot should tell)
  - `std_msg::string language` (the speaking language used for voice synthesizes)
