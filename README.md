@@ -66,17 +66,17 @@ Each topic of the architecture has a dedicated message format as following:
 	- `std_msg::string transcript` (the text generated from the user's voice)
 	- `std_msg::float confidence` (the recognition confidence between 0 and 1)
 - the `/text_to_speech` topic uses the `speech_interaction/Text2Speech` message, which contains:
- - `std_msg::string text` (the string that the robot should tell)
- - `std_msg::string language` (the speaking language used for voice synthesizes)
- - `std_msg::float volume` (the volume of the robot voice)
- - `std_msg::float pitch` (the pitch of the robot voice)
- - `std_msg::float rate` (the rate of the robot voice) 
+	- `std_msg::string text` (the string that the robot should tell)
+	- `std_msg::string language` (the speaking language used for voice synthesizes)
+	- `std_msg::float volume` (the volume of the robot voice)
+	- `std_msg::float pitch` (the pitch of the robot voice)
+	- `std_msg::float rate` (the rate of the robot voice) 
 - the `/CAGG/input_text` topic uses a `std_msg::string` message containing the user's sentence to translate.
 - the `/CAGG/semantic_tags` topic uses the `ros_cagg_msgs/cagg_tags` message, which contains:
- - `Hearder` (which contains a time stamp)
- - `ros_cag_msgs::confidence` (the confidence of the semantic recognition, between 0 and 1)
- - `ros_cagg_msgs::computationTimeMs` (the computation time needed to evaluate the text, i.e., spent in **ros_cagg_teleop** in milliseconds)
- - `ros_cagg_msgs::cags_tags` (which contains a list of list of `std_msgs::string` representing the semantics recognized for specific words)
+	- `Hearder` (which contains a time stamp)
+	- `ros_cag_msgs::confidence` (the confidence of the semantic recognition, between 0 and 1)
+	- `ros_cagg_msgs::computationTimeMs` (the computation time needed to evaluate the text, i.e., spent in **ros_cagg_teleop** in milliseconds)
+	- `ros_cagg_msgs::cags_tags` (which contains a list of list of `std_msgs::string` representing the semantics recognized for specific words)
 - the `CAGG/adapted/semantic_tags` is structured as `/CAGG/semantic_tags`, but returned by the adapter after the logging phase
 - the `CAGG/adapted/text_to_speech` is structured as `/text_to_speech`, but returned by the adapter after the logging phase
 
