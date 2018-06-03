@@ -1,6 +1,17 @@
 <launch>
 
-<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"/>
+<!-- <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"/> -->
+
+
+  <arg name="rosbridge_address" default="$(optenv ROS_HOSTNAME localhost)"/>
+  <group ns="concert">
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+      <arg name="address" value="$(arg rosbridge_address)"/>
+    </include>
+  </group>
+  <node name="rosapi" pkg="rosapi" type="rosapi_node" /> 
+
+
 
 <!-- you can use arguments: [-f] [-s] (see "web_interface_visualiser.sh -h" ) and the agent_priority-->
 <param name="speech_agent_priority" type="str" value="human" /> <!-- "human" or "robot" (not capitalised!!!)-->
@@ -12,3 +23,5 @@
 <include file="$(find ros_cagg_teleop)/launch/ros_cagg_interface.launch"/>
 
 </launch>
+
+
