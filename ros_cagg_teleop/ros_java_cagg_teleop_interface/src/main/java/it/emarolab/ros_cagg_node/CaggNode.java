@@ -108,7 +108,7 @@ public class CaggNode extends AbstractNodeMain {
                         }
 
                         caggEvaluationMsg.setCaggTags(tagsMsg);
-                        Time time = Time.fromMillis(System.currentTimeMillis());
+                        Time.fromMillis(System.currentTimeMillis());
                         caggEvaluationMsg.getHeader().setStamp(time);
                         caggEvaluationPublisher.publish(caggEvaluationMsg);
                         toRemove.add(st);
