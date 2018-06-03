@@ -330,7 +330,7 @@ ResponsiveVoice.JS for <a href="http://responsivevoice.org/">Text-to-Speech API<
 		recognition.onstart = function() {
 			recognizing = true;
 			showInfo('info_speak_now');
-			start_img.src = 'mic-resources/mic-animate.gif';
+			start_img.src = 'mic-resources/mic-animate.gif';			
 		};
 
 		recognition.onerror = function(event) {
@@ -374,6 +374,15 @@ ResponsiveVoice.JS for <a href="http://responsivevoice.org/">Text-to-Speech API<
 		};
 
 		recognition.onresult = function(event) {
+		
+		    
+	        var colorComputing = new ROSLIB.Param({
+		        ros : ros,
+		        name : '/color_key'
+	        });
+			colorComputing.set(4)
+		
+		
 			var interim_transcript = '';
 			var transcript_final_log = '';
 			var transcript_interim_log = '';
@@ -637,5 +646,5 @@ ResponsiveVoice.JS for <a href="http://responsivevoice.org/">Text-to-Speech API<
 				dropDownChooser.value = "robot_priority_set";
 			} else showInfoPriority( 'errorPriority');
 		}
-	);
+	); 
 </script>
