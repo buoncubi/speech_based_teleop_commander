@@ -10,9 +10,9 @@
 <QUANTIFIER>
 	:	<SLIGHTLY> {@?;} | <EXACTLY> {@?;};
 <SLIGHTLY>
-	:	slightly | weakly | bit | approximately | loosely | much; // "don't go so much" 
+	:	slight | slightly | weakly | weak | week | bit | approximately | approximate | lose | loose | loosely;
 <EXACTLY>
-	:	exactly | perfectly | carefully | strongly | very;
+    :    strictly | strict | exact | exactly | perfect | perfectly | careful | carefully | strong | strongly | very | really;
 
 
 	
@@ -25,21 +25,21 @@
 <BEHIND>
     :   behind;
 <FRONT>
-    :   front;
+    :   front | from;
 <NEAR>
-    :   near | close;    	
+    :   near | close | closed | closer | clothes;    	
 	
 	
 
 <OBJECT>
-	:	<ONE> {@1;} | <TWO> {@2;} | <TRHEE> {@3;} | <FOUR> {@4;} | <FIVE> {@5;} | <SIX> {@6;} | <SEVEN> {@7;} | <EIGHT> {@8;} | <NINE> {@9;};
+	:	<ONE> {@1;} | <TWO> {@2;} | <TRHEE> {@3;} | <FOUR> {@4;};//| <FIVE> {@5;} | <SIX> {@6;} | <SEVEN> {@7;} | <EIGHT> {@8;} | <NINE> {@9;};
 <ONE>	:	one | 1;
-<TWO>	:	two | 2;
-<TRHEE>	:	three | 3;
-<FOUR>	:	four | 4;
-<FIVE>	:	five | 5;
-<SIX>	:	six | 6;
-<SEVEN>	:	seven | 7;
-<EIGHT>	:	eight | 8;
-<NINE>	:	nine | 9;
+<TWO>	:	two | 2 | too;
+<TRHEE>	:	three | 3 | free | tree;
+<FOUR>	:	four | 4  | for | before;
+//<FIVE>	:	five | 5;
+//<SIX>		:	six | 6;
+//<SEVEN>	:	seven | 7;
+//<EIGHT>	:	eight | 8;
+//<NINE>	:	nine | 9;
 

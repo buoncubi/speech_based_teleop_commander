@@ -5,8 +5,8 @@
 <MAIN>	: 	<GO> {@?;} | <STOP> {@?;} | <RESET> {@?;};
 // do not change the rule name (GO, STOP, and RESET) those are used in code!
 
-<GO>	:	go;
-<STOP>	:	stop | finish | done | ok;
-<RESET>	:	reset | forget | wrong | no;
+<GO>	:	go | move;  // add HERE/There command based only on pointing
+<STOP>	:	stop | finish | finished | done | Dan | good;
+<RESET>	:	reset | result | reside | ricette | forget | forgot | forgetful | wrong | nevermind | never mind;
 
 
