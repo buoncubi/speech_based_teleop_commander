@@ -6,7 +6,7 @@
   <arg name="rosbridge_address" default="$(optenv ROS_HOSTNAME localhost)"/>
   <group ns="concert">
     <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
-      <arg name="address" value="$(arg rosbridge_address)"/>
+      <arg name="address" value="130.251.13.71"/> <!-- "$(arg rosbridge_address)"/> -->
     </include>
   </group>
   <node name="rosapi" pkg="rosapi" type="rosapi_node" /> 
@@ -15,10 +15,10 @@
 
 <!-- you can use arguments: [-f] [-s] (see "web_interface_visualiser.sh -h" ) and the agent_priority-->
 <param name="speech_agent_priority" type="str" value="human" /> <!-- "human" or "robot" (not capitalised!!!)-->
-<node name="web_interface_visualiser" pkg="speech_interaction" type="web_interface_visualiser.sh" args="-u $(find speech_interaction)/java-script/speech_web_interface.html" output="screen"/>
+<!--<node name="web_interface_visualiser" pkg="speech_interaction" type="web_interface_visualiser.sh" args="-u $(find speech_interaction)/java-script/speech_web_interface.html" output="screen"/>-->
 
 <!-- you can use speaker arguments: [_robot_language(str)] [_robot_volume(double)] [_robot_pitch(double)] [_robot_rate(double)]  (see http://responsivevoice.org/api/) and [_speech_dialog_print(str, path to the produced file. "":=don't print)] -->
-<node name="speech_teleop_adapter" pkg="speech_interaction" type="speech_teleop_adapter" args="_robot_language:='UK English Male' _speech_dialog_print:=$(find speech_interaction)'dialogs-log/'" output="screen" />
+<node name="speech_teleop_adapter" pkg="speech_interaction" type="speech_teleop_adapter" args="_robot_language:='UK English Male' _speech_dialog_print:=$(find speech_interaction)'dialogs-log/'" /> <!-- output="screen" -->
 
 <include file="$(find ros_cagg_teleop)/launch/ros_cagg_interface.launch"/>
 

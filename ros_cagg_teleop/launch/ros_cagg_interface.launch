@@ -22,5 +22,5 @@
         type="double" />
 
     <!-- launch the CAGG interface -->
-    <node pkg="ros_cagg_teleop" type="execute" name="ros_cagg_teleop" args="it.emarolab.ros_cagg_node.CaggNode" output="screen"/>
+    <node pkg="ros_cagg_teleop" type="execute" name="ros_cagg_teleop" args="it.emarolab.ros_cagg_node.CaggNode" /> <!-- output="screen" -->
 </launch>

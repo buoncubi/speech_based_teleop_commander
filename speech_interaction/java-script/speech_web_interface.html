@@ -38,7 +38,7 @@
 	.info {
 		font-size: 14px;
 		text-align: center;
-		color: #777;
+		color: #dfdcdc;
 		display: none;
 	}
 	.right {
@@ -58,18 +58,23 @@
 	#info {
 		font-size: 20px;
 		text-align: center;
-		color: #777;
+		color: #dfdcdc;
 		visibility: hidden;
+	}
+	#info2 {
+		font-size: 20px;
+		text-align: center;
+		color: #dfdcdc;
 	}
 	#infoSpeech{
 		font-size: 20px;
 		text-align: center;
-		color: #777;
+		color: #dfdcdc;
 	}
 	#info_priority{
 		font-size: 14px;
 		text-align: center;
-		color: #777;
+		color: #dfdcdc;
 	}
 	#results {
 		font-size: 14px;
@@ -101,74 +106,100 @@
 	#section{
 		font-size: 16px;
 		font-weight: bold;
-		color: #777;
+		color: #dfdcdc;
 		text-align: right;
 	}
 	#documentation{
 		font-size: 12px;
-		color: #777;
+		color: #dfdcdc;
 		text-align: left;
 	}
 </style>
 
 
 <!-- [[[[[[[[[[[[[[[[[[[[[[[[   SET PAGE CONTENTS  ]]]]]]]]]]]]]]]]]]]]]]]  -->
+
+<!-- test 
+<button onclick="myFunction()">Click to simulate a "stop" sentence</button>
+<script>
+function myFunction() {
+  // publish dummy values data on ROS
+	var message = new ROSLIB.Message({
+		language : "Test",
+		transcript : "stop",
+		confidence : 1.0
+	});
+	pub.publish( message);	
+}
+</script>
+-->
+
 <!-- title -->
-<h1 class="center" id="headline">
-	Google Speech Recogniton <a href="https://developers.google.com/web/updates/2013/01/Voice-Driven-Web-Apps-Introduction-to-the-Web-Speech-API?hl=en"> API</a> and  <a href="http://responsivevoice.org/"> Synthesizer</a>. <br> A demo Interface for <a href="http://wiki.ros.org/roslibjs">ROSbridge</a>. </h1>
+<h1 class="center" id="headline"> Qualitative Miro Teleoping </h1>
 
 
-<!-- informations on how to use the system -->
-<hr>  
-<div id="section">
-	Information.
-</div>
 
-<div class="left" id="documentation">
-<p> 
-This web interface implements a speech-text Recognition and Synthesizer interface to Robotic Operating System (tested with Indigo version).<br>
-Particularly, it allow a user to continuously speak (after the microphone button is pressed) in order to publish the recognised text to the <code style="background-color:#e1eaea">/speech_to_text</code> ROS topic. As an example the node <code style="background-color:#e1eaea">speech_example</code> of the package <code style="background-color:#e1eaea">speech_interaction</code> modifies the string and talk back to the user.<br>
-In order to use it you must to connect to ROS bridge by calling: <code style="background-color:#e1eaea">roslaunch rosbridge_server rosbridge_websocket.launch</code> and run the node with: <code style="background-color:#e1eaea">rosrun speech_interaction speech_example</code>. <br>
-Also, take in mind that this page works only on Chrome or Chromium. Moreover, if this html page is launched from local file you have to open the Browser in not safe mode (otherwise the microphone is disabled) by typing in a terminal: <code style="background-color:#e1eaea">usr/bin/chromium-browser --user-data-dir=”/var/tmp/Chrome” --disable-web-security</code><br>
-Please, see also the java console <code style="background-color:#e1eaea">alt+shift+I</code> as well the complete ROSlaunch configurations as: <code style="background-color:#e1eaea">roslaunch speech_interaction speech_back_example.launch</code>.<br>
-Moreover, consider that there is a Robot or Human speaker priority (given by ROS parameters). Particularly, if the agent with the priority speecks the other cannot speak. If the priority is given to the Human, the robot will consider olways the most up to date sentence given by the Human.
-</p>
-<p>
-The tools used in this scripts are powered by: Google for <a href="https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">Speech-To-Text API</a>,
-ResponsiveVoice.JS for <a href="http://responsivevoice.org/">Text-to-Speech API</a> mand <a href="http://wiki.ros.org/rosbridge_suite/Tutorials/RunningRosbridge">ROSjs</a> for bridging javascripts with ROS middleware.
-</p>
-</div>
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/* Create two unequal columns that floats next to each other */
+.column {
+    float: left;
+    padding: 10px;
+}
+
+.left {
+  width: 65%;
+}
+
+.right {
+  width: 35%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+</style>
+</head>
+<body style="background-color:#2f2f2f" text="white">
+
+<div class="row">
+  <div class="column left" style="background-color:transparent;">
 
 <!-- sppech-to-text section -->
 <hr>  
-<div id="section">
-	Speech-to-Text.
-</div>
 <div id="info">
-	<p id="info_start">Click on the microphone icon and begin speaking.<br><br></p>
-	<p id="info_speak_now">Speak now.<br><br></p>
-	<p id="info_no_speech">No speech was detected. You may need to adjust your <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892"> microphone settings</a>.<br><br></p>
-	<p id="info_no_microphone" style="display:none"> No microphone was found. Ensure that a microphone is installed and that <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892"> microphone settings</a> are configured correctly.<br><br></p>
-	<p id="info_allow">Click the "Allow" button above to enable your microphone.</p>
-	<p id="info_denied">Permission to use microphone was denied. <br><br></p>
-	<p id="info_blocked">Permission to use microphone is blocked. To change, go to chrome://settings/content/microphone <br><br></p>
-	<p id="info_upgrade">Web Speech API is not supported by this browser. Upgrade to <a href="//www.google.com/chrome">Chrome</a> version 25 or later. <br><br></p>
-	<p id="info_pub">command send to ROS topic /speech_to_text!<br>You can keep speaking...<br><br></p> 
-	<p id="info_robot_priority">The speaker priority is given to the Robot. You cannot speeach while it is speaking.</p>
+	<p id="info_start">Click on the microphone icon and begin speaking.
+	<p id="info_speak_now">Speak now.
+	<p id="info_no_speech">No speech was detected. You may need to adjust your <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892"> microphone settings</a>.
+	<p id="info_no_microphone" style="display:none"> No microphone was found. Ensure that a microphone is installed and that <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892"> microphone settings</a> are configured correctly.
+	<p id="info_allow">Click the "Allow" button above to enable your microphone.
+	<p id="info_denied">Permission to use microphone was denied.
+	<p id="info_blocked">Permission to use microphone is blocked. To change, go to chrome://settings/content/microphone.
+	<p id="info_upgrade">Web Speech API is not supported by this browser. Upgrade to <a href="//www.google.com/chrome">Chrome</a> version 25 or later.
+	<p id="info_pub">command send to ROS topic /speech_to_text!<br>You can keep speaking...
+	<p id="info_robot_priority">The speaker priority is given to the Robot. You cannot speeach while it is speaking.
 </div>
-<div class="right">
+<p class="right">
 	<button id="start_button" onclick="startButton(event)">
 	<img id="start_img" src="mic-resources/mic.gif" alt="Start"></button>
-</div>
-<div id="inter_results">
+</p>
+<p id="inter_results">
 	Intermidiate recognised string from speech:<br>
 	<span id="interim_span" class="interim"></span>
-	<p>
-</div>
+</p>
 <div id="results">
 	Final recognised string from speech:<br>
 	<span id="final_span" class="final"></span>
-	<p>
 </div>
 <div class="left" id="div_language">
 	<br>Select the speaking language: &nbsp
@@ -178,8 +209,63 @@ ResponsiveVoice.JS for <a href="http://responsivevoice.org/">Text-to-Speech API<
 </div>
 <br>
 
+</div>
+  <div class="column right" style="background-color:transparent;">
+    <hr><div id="info2">Commands</div>
+    
+    
+    <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;margin:0px auto;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-s6z2{text-align:center}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-yw4l{vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-s6z2"><span style="font-weight:bold">Color</span></th>
+    <th class="tg-s6z2"><span style="font-weight:bold">Command</span></th>
+  </tr>
+  <tr>
+    <td class="tg-baqh"><font color="green"><b>GREEN</font></td>
+    <td class="tg-baqh">ready for new commnad</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh"><font color="yellow"><b>YELLOW</font></td>
+    <td class="tg-baqh">computing speech and gesture</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh"><font color="#5e90ee"><b>BLUE</font></td>
+    <td class="tg-baqh">goal position found</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh"><font color="red"><b>RED</font></td>
+    <td class="tg-baqh">command not understood</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"><font color="#cb82ea"><b>PURPLE</font></td></td>
+    <td class="tg-baqh">memory reset</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh"><font color="white"><b>WHITE</font></td></td>
+    <td class="tg-baqh">target reached<br></td>
+  </tr>
+</table>
+    
+    
+    
+  </div>
+</div>
 
-<!-- text-to-speech section -->
+</body>
+
+
+
+</html>
+
+
+<!-- text-to-speech section 
 <hr>  
 <div id="section">
 	Text-To-Speech.
@@ -221,7 +307,7 @@ ResponsiveVoice.JS for <a href="http://responsivevoice.org/">Text-to-Speech API<
 	<p id="robotPriority">The robot has the interaction priority. You cannot speech when the rebot is providing an answer.</p>
 	<p id="errorPriority">Error on setting the priority from ROS parameters, you can specify only: <code style="background-color:#e1eaea">human</code> or <code style="background-color:#e1eaea">robot</code>. Using the default value: Human-Priority</p>
 </div>
-
+-->
 
 
 <!-- [[[[[[[[[[[[[[[[[[[[[[[[   JAVA SCRIPT FOR SPEECH-TO-TEXT  ]]]]]]]]]]]]]]]]]]]]]]]  -->
@@ -561,7 +647,7 @@ ResponsiveVoice.JS for <a href="http://responsivevoice.org/">Text-to-Speech API<
 	});
 
 	// Create a connection to the rosbridge WebSocket server.
-	ros.connect('ws://localhost:9090');
+	ros.connect('ws://130.251.13.71:9090');
 
 
 	// create a publisher 
